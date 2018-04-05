@@ -183,6 +183,17 @@ services:
         - frontend
         - backend
 
+### Redis Container #########################################
+
+    redis:
+      build: ./docker/containers/redis
+      volumes:
+        - ${DATA_SAVE_PATH}/redis:/data
+      ports:
+        - ${APP_HOST}:6379:6379
+      networks:
+        - backend
+
 ### Networks Setup ############################################
 
 networks:
