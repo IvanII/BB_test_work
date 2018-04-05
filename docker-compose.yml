@@ -23,7 +23,7 @@ services:
           - INSTALL_IMAP=false
           - INSTALL_MONGO=false
           - INSTALL_AMQP=false
-          - INSTALL_PHPREDIS=false
+          - INSTALL_PHPREDIS=true
           - INSTALL_MSSQL=false
           - INSTALL_NODE=true
           - NPM_REGISTRY=true
