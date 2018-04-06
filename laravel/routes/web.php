@@ -14,3 +14,10 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::get('chat/', 'Chat\ChatController@index');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
