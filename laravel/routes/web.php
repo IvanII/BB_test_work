@@ -18,8 +18,10 @@ Route::get('/', function () {
 
 Route::get('chat/', 'Chat\ChatController@index');
 Route::get('coupons/', 'CouponPoolController@index')->name('coupons.index');
-Route::get('coupons/{user_id}/obtain', 'CouponPoolController@obtainCoupon')->name('coupons.obtain');
-Route::get('coupons/release', 'CouponPoolController@releaseCoupons')->name('coupons.release');
+Route::put('coupons/obtain', 'CouponPoolController@obtainCoupon')
+        ->name('coupons.obtain')
+        ->middleware('check.obtain.allow');
+Route::put('coupons/release', 'CouponPoolController@releaseCoupons')->name('coupons.release');
 
 Auth::routes();
 
