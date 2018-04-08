@@ -4,6 +4,11 @@
     <div class="container">
         <div class="row">
             <div class="col-md-6">
+                @if ( $errors->count() > 0 )
+                    @foreach( $errors->all() as $message )
+                        <div>{{ $message }}</div>
+                    @endforeach
+                @endif
                 <div class="panel panel-default">
                     <div class="panel-heading">Users</div>
 
@@ -21,8 +26,13 @@
                                 <tr>
                                     <td>{{ $user->id }}</td>
                                     <td>{{ $user->name }}</td>
-                                    <td><a href="{{ route('coupons.obtain', [$user->id]) }}"
-                                           class="btn btn-success">obtain coupon</a>
+                                    <td>
+                                        <form method="post" action="{{route('coupons.obtain')}}">
+                                            {{ csrf_field() }}
+                                            <input name="_method" type="hidden" value="PUT">
+                                            <input name="user_id" type="hidden" value="{{ $user->id }}">
+                                            <button class="btn btn-success" type="submit">obtain coupon</button>
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach
@@ -47,7 +57,11 @@
             </div>
         </div>
         <div class="row">
-            <a href=""  class="btn btn-primary">Release all coupons</a>
+            <form method="post" action="{{route('coupons.release')}}">
+                {{ csrf_field() }}
+                <input name="_method" type="hidden" value="PUT">
+                <button class="btn btn-primary" type="submit">Release all coupons</button>
+            </form>
         </div>
     </div>
 @endsection
